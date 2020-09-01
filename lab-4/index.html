@@ -10,32 +10,33 @@
 	<div id="canvas">
 		<section id="canvas_header">
 			<div>
-				เหลือเวลา 10 วินาที
+				เหลือเวลา {{time}} วินาที
+
 			</div>
 		</section>
 		<section id="canvas_main">
 			<main>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot style="--l:80%"></a-dot>
-				<a-dot data-pick="true"></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
+				<a-dot v-for='i in row*row'
+				:style="{
+				'--row': row,
+				'--h': h,
+				'--l': l+'%'
+			}"
+				
+				:data-pick="i == pick"
+				@click="check(i == pick)"
+				></a-dot>
 			</main>
 		</section>
 		<section id="canvas_footer">
 			<div>
-				0 คะแนน
+				{{score}} คะแนน
 			</div>
 		</section>
 	</div>
 
 	<script>
-		let picklight = "20%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%
-		document.registerElement('a-dot') //ให้ vue รู้จัก a-dot
+		let picklight = "30%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%
 
 		function rand(start,stop){//สร้างฟังก์ชัน random ไว้ใช้
 			let shift = (stop-start)+1
@@ -45,16 +46,44 @@
 		let app = new Vue({
 			el:'#canvas',
 			data:{
-				row:2, //จำนวนแถวที่จะมีในรอบนี้
-				h:330, // hue ในรอบนี้
+				row:3, //จำนวนแถวที่จะมีในรอบนี้
+				h:250, // hue ในรอบนี้
 				time:10, //เวลาเริ่มต้น
 				score:0, //คะแนนเริ่มต้น
 				pick:1, //หมายเลขวงกลมที่จะสีแตกต่างจากก้อนอื่นๆ
 				l:30,//ความสว่างของสีทั่วไปในรอบนี้
+				add:0
 			},
-			methods: {
+			methods: {	
+				check: function(e){
+					if(this.time > 0){
+						if(e){
+							this.score++
+							this.time++
+							this.add++
+							this.next()
+						}
+						else{
+							this.time--
+						}
+					}
+					if (this.add==3) {
+						this.time+=2
+						this.add=0
+					}
+					console.log(e)
+				},
+				next: function(){
+					this.row = rand(2,4)
+					this.pick = rand(1,this.row*this.row);
+					this.h = rand(0,360)
+					this.l = rand(40,60)
+					picklight = rand(20,80)+'%'
+
+				}
 
 			}
+
 		})
 		//ทำให้แคนวาสมี --picklight ตามที่กำหนดไว้ข้างบนนี้
 		document.querySelector('#canvas').style.setProperty('--picklight',picklight);
