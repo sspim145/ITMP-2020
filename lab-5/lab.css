@@ -16,16 +16,15 @@ body{
 }
 #canvas_header,
 #canvas_footer{
-	background-color: brown;
-	background-image: url('tile-grass.jpg');
+	background-color: #ffb6a3;
 	background-size: 20%;
 	height: 50px;
 	color: white;
 	font-weight: bold;
 }
 #canvas_main{
-	background-color: grey;
-	background-image: url('tile-rock.jpg');
+	background-color: #f5d1c3;
+
 	background-size: 20%;
 	height: 400px;
 	opacity: .2;
@@ -48,7 +47,7 @@ main{
 div.box{
 	width: var(--boxsize);
 	height: var(--boxsize);
-	background-color: orange;
+	background-color: #aab8bb;
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -67,24 +66,23 @@ div.box{
 	background-color: #333;
 }
 .box._toggle{
-	background-color: yellow;
+	background-color: #5f9595;
 	transition: none;
 	opacity: .5;
 }
 .box._toggle[data-isrightarrow="0"]{
-	background-color: red;
+	background-color: #f0bc68;
 }
 
 
 .box._12{
-	background-color: red;
+	background-color: #f0bc68;
 }
 .box._16{
-	background-color: yellow;
+	background-color: #5f9595;
 }
 .box._path{
-	background-color: black;
-	background-image: url('tile-wood.jpg');
+	background-color: #f7f3f0;
 	background-size: cover;
 	transform: rotate(0deg);
 }
@@ -96,13 +94,13 @@ div.box{
 	transform: rotate(90deg);
 }
 .box._fruit{
-	background-color: yellow;
+	background-color: #5f9595;
 	border-radius: 100%;
 	border: 3px solid #fffc;
 	transform: scale(.6);
 }
-.box._fruit[data-type="11"]{
-	background-color: red;
+.box._fruit[data-type="red"]{
+	background-color: #f0bc68;
 }
 
 .box[data-pst="0"]{
