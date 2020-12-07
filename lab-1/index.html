@@ -12,16 +12,11 @@
 				<input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" v-model="number">
 				<input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" v-model="numx">
 				<div class="space"></div>
-				<h1>สูตรคูณแม่ {{number}}</h1> 
-				
-
-				<!-- <div v-for = "i in x" class="row">
-					{{number}} x <i>{{i}}</i> = <b>{{multiply(i)}}</b>
-				</div> -->
+				<h1 style="font-size: 1.5em">สูตรคูณแม่ {{number}}</h1> 
 				<table class="table-auto">
 					<thead>
 						<tr>
-							<th class="px-4 py-2">ตัวต้น</th>
+							<th class="px-4 py-2">ตัวตั้ง</th>
 							<th class="px-4 py-2">ตัวคูณ</th>
 							<th class="px-4 py-2">ผลลัพธ์</th>
 						</tr>
@@ -34,7 +29,8 @@
 						</tr>
 					</tbody>
 				</table>
-				<h3>sum {{sum}}</h3>
+				<br>
+				<h2><b>sum</b> = {{sum}}</h2>
 			</div>
 
 			<script>
